@@ -396,3 +396,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Misc
+appsettings.json
+PublishProfiles/
+ServiceDependencies/
