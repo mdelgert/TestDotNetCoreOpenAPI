@@ -22,11 +22,11 @@ namespace WebApp2
             _container = await _database.CreateContainerIfNotExistsAsync(containerId, "/partitionKey");
         }
 
-        public async Task<Family> GetFamilyByIdAsync(string id, string partitionKey)
+        public async Task<Note> GetFamilyByIdAsync(string id, string partitionKey)
         {
             try
             {
-                ItemResponse<Family> response = await _container.ReadItemAsync<Family>(id, new PartitionKey(partitionKey));
+                ItemResponse<Note> response = await _container.ReadItemAsync<Note>(id, new PartitionKey(partitionKey));
                 return response.Resource;
             }
             catch (CosmosException ex)
@@ -40,11 +40,11 @@ namespace WebApp2
             }
         }
 
-        public async Task<Family> CreateFamilyAsync(Family family)
+        public async Task<Note> CreateFamilyAsync(Note family)
         {
             try
             {
-                ItemResponse<Family> response = await _container.CreateItemAsync(family, new PartitionKey(family.PartitionKey));
+                ItemResponse<Note> response = await _container.CreateItemAsync(family, new PartitionKey(family.PartitionKey));
                 return response.Resource;
             }
             catch (CosmosException ex)
