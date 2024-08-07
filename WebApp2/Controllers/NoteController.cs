@@ -18,37 +18,48 @@ namespace WebApp2.Controllers
         }
 
         [HttpGet("GetNoteById")]
-        public async Task<ActionResult<Note>> GetFamilyById([FromQuery] 
+        public async Task<ActionResult<Note>> GetNoteById([FromQuery] 
         string id = "Note.1", [FromQuery] 
         string partitionKey = "Note1")
         {
-            var note = await _cosmosDbService.GetFamilyByIdAsync(id, partitionKey);
+            var note = await _cosmosDbService.GetNoteByIdAsync(id, partitionKey);
             if (note == null)
             {
                 return NotFound();
             }
             return Ok(note);
         }
-
-        // New POST method
+        
         [HttpPost]
         public async Task<ActionResult<Note>> CreateNote([FromBody] 
         Note note, [FromQuery] 
         string id = "Note.1", [FromQuery] 
         string partitionKey = "Note1")
         {
-            if (note == null)
-            {
-                return BadRequest("Note data is required.");
-            }
-
             // Set default values if not provided
             note.Id = id;
             note.PartitionKey = partitionKey;
 
-            var createdFamily = await _cosmosDbService.CreateFamilyAsync(note);
-            return CreatedAtAction(nameof(GetFamilyById), new 
-            { id = createdFamily.Id, partitionKey = createdFamily.PartitionKey }, createdFamily);
+            var createdNote = await _cosmosDbService.CreateNoteAsync(note);
+            return CreatedAtAction(nameof(GetNoteById), new 
+            { id = createdNote.Id, partitionKey = createdNote.PartitionKey }, createdNote);
+        }
+
+        [HttpDelete("DeleteNote")]
+        public async Task<IActionResult> DeleteNote([FromQuery] 
+        string id = "Note.1", [FromQuery] 
+        string partitionKey = "Note1")
+        {
+            try
+            {
+                await _cosmosDbService.DeleteNoteAsync(id, partitionKey);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error deleting note");
+                return StatusCode(500, "Internal server error");
+            }
         }
 
     }

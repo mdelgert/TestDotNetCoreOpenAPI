@@ -22,35 +22,48 @@ namespace WebApp2
             _container = await _database.CreateContainerIfNotExistsAsync(containerId, "/partitionKey");
         }
 
-        public async Task<Note> GetFamilyByIdAsync(string id, string partitionKey)
+        public async Task<Note?> GetNoteByIdAsync(string id, string partitionKey)
         {
             try
             {
-                ItemResponse<Note> response = await _container.ReadItemAsync<Note>(id, new PartitionKey(partitionKey));
+                var response = await _container.ReadItemAsync<Note>(id, new PartitionKey(partitionKey));
                 return response.Resource;
             }
             catch (CosmosException ex)
             {
-                if (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
-                {
-                    Console.WriteLine($"Item with id: {id} not found.");
-                    return null;
-                }
-                throw;
+                if (ex.StatusCode != System.Net.HttpStatusCode.NotFound) throw;
+                Console.WriteLine($"Item with id: {id} not found.");
+                return null;
             }
         }
 
-        public async Task<Note> CreateFamilyAsync(Note family)
+        public async Task<Note> CreateNoteAsync(Note note)
         {
             try
             {
-                ItemResponse<Note> response = await _container.CreateItemAsync(family, new PartitionKey(family.PartitionKey));
+                var response = await _container.CreateItemAsync(note, new PartitionKey(note.PartitionKey));
                 return response.Resource;
             }
             catch (CosmosException ex)
             {
                 // Handle creation exception
                 throw new Exception($"Failed to create family: {ex.Message}");
+            }
+        }
+
+        public async Task DeleteNoteAsync(string id, string partitionKey)
+        {
+            try
+            {
+                await _container.DeleteItemAsync<Note>(id, new PartitionKey(partitionKey));
+            }
+            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                throw new Exception("Note not found");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Failed to delete note: {ex.Message}");
             }
         }
     }
