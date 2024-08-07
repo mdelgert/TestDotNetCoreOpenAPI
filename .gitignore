@@ -398,6 +398,7 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Misc
+App.config
 appsettings.json
 PublishProfiles/
 ServiceDependencies/
