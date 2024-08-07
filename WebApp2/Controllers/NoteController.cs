@@ -34,11 +34,13 @@ namespace WebApp2.Controllers
         public async Task<ActionResult<Note>> CreateNote([FromBody] 
         Note note, [FromQuery] 
         string id = "Note.1", [FromQuery] 
-        string partitionKey = "Note1")
+        string partitionKey = "Note1",
+        string message = "Hello World")
         {
             // Set default values if not provided
             note.Id = id;
             note.PartitionKey = partitionKey;
+            note.Message = message;
 
             var createdNote = await _cosmosDbService.CreateNoteAsync(note);
             return CreatedAtAction(nameof(GetNoteById), new 
@@ -61,7 +63,6 @@ namespace WebApp2.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-
     }
 }
 
