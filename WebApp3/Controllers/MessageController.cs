@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*
+using Microsoft.AspNetCore.Mvc;
 using WebApp3;
 
 namespace MyApi.Controllers
@@ -25,3 +26,4 @@ namespace MyApi.Controllers
         }
     }
 }
+*/

@@ -7,8 +7,10 @@ namespace WebApp3
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Bind the AzureBlobStorageSettings from appsettings.json
+            builder.Services.Configure<AzureBlobStorageSettings>(builder.Configuration.GetSection("AzureBlobStorage"));
 
+            // Add services to the container.
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
