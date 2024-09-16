@@ -1,0 +1,5 @@
+@serverUrl = http://localhost:5293
+
+GET {{serverUrl}}/api/Echo/blob HTTP/1.1
+
+

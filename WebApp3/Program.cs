@@ -1,4 +1,3 @@
-
 namespace WebApp3
 {
     public class Program
@@ -19,17 +18,14 @@ namespace WebApp3
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+            //if (app.Environment.IsDevelopment())
+            //{
+            //}
 
+            app.UseSwagger();
+            app.UseSwaggerUI();
             app.UseAuthorization();
-
-
             app.MapControllers();
-
             app.Run();
         }
     }
