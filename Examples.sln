@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp2", "WebApp2\WebApp2.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmosGettingStarted", "CosmosGettingStartedTutorial\CosmosGettingStarted.csproj", "{28D4AEEF-2F4C-47A6-BE84-1CFD24A989C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp3", "WebApp3\WebApp3.csproj", "{70BDCC97-619D-403E-93F9-1739014F8F47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp3", "WebApp3\WebApp3.csproj", "{70BDCC97-619D-403E-93F9-1739014F8F47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

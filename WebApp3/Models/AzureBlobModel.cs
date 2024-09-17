@@ -1,6 +1,6 @@
-﻿namespace WebApp3
+﻿namespace WebApp3.Models
 {
-    public class AzureBlobStorageSettings
+    public class AzureBlobModel
     {
         public string ConnectionString { get; set; }
         public string ContainerName { get; set; }
