@@ -1,3 +1,4 @@
+/*
 using Microsoft.AspNetCore.Mvc;
 using WebApp1.Models;
 
@@ -32,3 +33,4 @@ namespace WebApp1.Controllers
         }
     }
 }
+*/
