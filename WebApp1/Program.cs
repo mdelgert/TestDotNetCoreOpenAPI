@@ -1,3 +1,4 @@
+using AspNetCore.Swagger.Themes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -40,7 +41,8 @@ namespace WebApp1
             //}
 
             app.UseSwagger();
-            app.UseSwaggerUI();
+            //app.UseSwaggerUI();
+            app.UseSwaggerUI(ModernStyle.Dark);
             app.UseAuthorization();
             app.MapControllers();
             app.Run();
