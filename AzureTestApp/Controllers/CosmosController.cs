@@ -29,5 +29,22 @@ namespace AzureTestApp.Controllers
             }
             return Ok(note);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<NoteCosmosModel>> CreateNote([FromBody]
+        NoteCosmosModel note, [FromQuery]
+        string id = "Note.1", [FromQuery]
+        string partitionKey = "Note1",
+        string message = "HelloCosmos!")
+        {
+            // Set default values if not provided
+            note.Id = id;
+            note.PartitionKey = partitionKey;
+            note.Message = message;
+
+            var createdNote = await _cosmosDbService.CreateNoteAsync(note);
+            return CreatedAtAction(nameof(GetNoteById), new
+            { id = createdNote.Id, partitionKey = createdNote.PartitionKey }, createdNote);
+        }
     }
 }

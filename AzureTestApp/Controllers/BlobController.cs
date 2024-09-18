@@ -23,7 +23,7 @@ namespace AzureTestApp.Controllers
 
         // POST: api/Blob/save
         [HttpPost("save")]
-        public async Task<IActionResult> SaveToBlobAsync([FromBody] MessageModel model)
+        public async Task<IActionResult> SaveToBlobAsync([FromBody] MessageBlobModel model)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace AzureTestApp.Controllers
                 }
 
                 // Deserialize JSON to MessageModel
-                var messageModel = JsonConvert.DeserializeObject<MessageModel>(content);
+                var messageModel = JsonConvert.DeserializeObject<MessageBlobModel>(content);
 
                 // Return the JSON content
                 return Ok(messageModel);
@@ -82,7 +82,7 @@ namespace AzureTestApp.Controllers
                 return StatusCode(500, new { error = "An error occurred while retrieving the file from blob storage.", details = ex.Message });
             }
         }
-        private async Task SaveMessageToBlobAsync(MessageModel messageModel, string blobName)
+        private async Task SaveMessageToBlobAsync(MessageBlobModel messageModel, string blobName)
         {
             // Create a BlobServiceClient using settings from appsettings.json
             BlobServiceClient blobServiceClient = new BlobServiceClient(_blobSettings.ConnectionString);

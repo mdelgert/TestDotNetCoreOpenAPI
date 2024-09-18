@@ -2,7 +2,7 @@
 
 namespace AzureTestApp.Models
 {
-    public class MessageModel
+    public class MessageBlobModel
     {
         [DefaultValue("hello1")]
         public string? Message { get; set; }
