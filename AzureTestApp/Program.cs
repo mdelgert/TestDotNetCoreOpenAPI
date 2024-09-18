@@ -20,6 +20,9 @@ namespace AzureTestApp
             builder.Services.Configure<CosmosDbSettingsModel>(builder.Configuration.GetSection("CosmosDb"));
             builder.Services.AddSingleton<CosmosDbService>();
 
+            // Bind the AzureBlobStorageSettings from appsettings.json
+            builder.Services.Configure<AzureBlobModel>(builder.Configuration.GetSection("AzureBlobStorage"));
+
             // Add services to the container.
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
