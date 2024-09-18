@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using AzureTestApp.Models;
+using AzureTestApp.Services;
 
 namespace AzureTestApp.Controllers
 {
@@ -12,10 +10,10 @@ namespace AzureTestApp.Controllers
 
     public class SqlController : ControllerBase
     {
-        private readonly NotesDbContext _context;
+        private readonly NotesDbService _context;
         private readonly ILogger<SqlController> _logger;
 
-        public SqlController(NotesDbContext context, ILogger<SqlController> logger)
+        public SqlController(NotesDbService context, ILogger<SqlController> logger)
         {
             _context = context;
             _logger = logger;

@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using AzureTestApp.Models;
 
-namespace AzureTestApp
+namespace AzureTestApp.Services
 {
-    public class NotesDbContext : DbContext
+    public class NotesDbService : DbContext
     {
-        public NotesDbContext(DbContextOptions<NotesDbContext> options)
+        public NotesDbService(DbContextOptions<NotesDbService> options)
             : base(options)
         {
         }

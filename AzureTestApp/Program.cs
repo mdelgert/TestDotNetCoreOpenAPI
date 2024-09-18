@@ -13,7 +13,7 @@ namespace AzureTestApp
             var builder = WebApplication.CreateBuilder(args);
 
             // Configure the database context
-            builder.Services.AddDbContext<NotesDbContext>(options =>
+            builder.Services.AddDbContext<NotesDbService>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add cosmos services to the container.

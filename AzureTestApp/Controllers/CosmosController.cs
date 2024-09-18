@@ -1,8 +1,6 @@
 ﻿using AzureTestApp.Models;
 using AzureTestApp.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 
 namespace AzureTestApp.Controllers
 {
